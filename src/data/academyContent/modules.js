@@ -194,6 +194,15 @@ export const ACADEMY_MODULES = Object.freeze([
           'Closing a session declares the physical cash, is validated against the system position and requires authoriser approval. An open teller session blocks day end.',
         ],
       },
+      {
+        id: 'live-journey-teller',
+        title: 'Live journey: run the cash counter end to end',
+        body: [
+          'The whole teller cycle is LIVE in the simulator. As teller01 (Teller@123): open a session (TEL-SESSION-OPEN-001) with a ₹50,000 float — cash screens refuse to work without it. Then submit a cash deposit (TEL-CASH-DEPOSIT-001) of ₹5,000 into SB000002 with denominations 2 x ₹2,000 + 2 x ₹500, and a cash withdrawal (TEL-CASH-WITHDRAWAL-001) of ₹2,000 from SB000001.',
+          'As tellerauthoriser01 (TellerAuth@123), approve both in the Authorisation Queue. Each approval posts a balanced journal (deposit: Dr Teller Cash / Cr Deposit Liability; withdrawal: the mirror), moves the account balance and updates the teller\'s session cash. Check Teller Cash Inquiry (TEL-CASH-POSITION-001): expected drawer cash ₹53,000, computed from live postings.',
+          'Finish with Teller Cash Closing (TEL-SESSION-CLOSE-001): declare the counted cash; the authoriser approves, and any variance is recorded as an exception, never force-matched. Then try the controls: withdraw from dormant SB000005 (blocked), withdraw ₹70,000 from liened SB000007 (blocked — only ₹60,000 is available), and reverse the deposit with TXN-REVERSE-001 to watch balances restore while history stays immutable.',
+        ],
+      },
     ],
   },
   {

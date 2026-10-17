@@ -9,6 +9,8 @@ import { recordAudit } from './auditService.js';
 import { environmentService } from './environmentService.js';
 import { postFinancialTransaction } from './postingService.js';
 import { DEPOSIT_LIABILITY_GL, TELLER_CASH_GL } from './accountService.js';
+import { applyTellerApprovalEffect } from './tellerService.js';
+import { applyReversalEffect } from './reversalService.js';
 
 /**
  * AuthorisationService - checker decisions (Phase 2).
@@ -69,6 +71,12 @@ async function applyApprovalEffect(request, session, businessDate) {
       });
       return { effect: 'ACCOUNT_OPENED_WITH_DEPOSIT', entityId: request.entityId, transactionId: transaction.id };
     }
+    case 'TEL-CASH-DEPOSIT-001':
+    case 'TEL-CASH-WITHDRAWAL-001':
+    case 'TEL-SESSION-CLOSE-001':
+      return applyTellerApprovalEffect(request, session, businessDate);
+    case 'TXN-REVERSE-001':
+      return applyReversalEffect(request, session, businessDate);
     default:
       throw new ValidationError(`No approval effect is implemented for ${request.operationCode} in this phase.`);
   }

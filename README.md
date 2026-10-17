@@ -21,15 +21,20 @@ experiences** in one Vue 3 project:
 
 ## Current status
 
-**Phase 2 (Customer and account onboarding, executable end to end) is complete.**
-Seven operations run as real maker-checker flows: Create Retail CIF
-(`CIF-CREATE-001`), Create Corporate CIF (`CIF-CORP-001`), Modify Customer
-(`CIF-MODIFY-001`), Customer 360 Inquiry (`CIF-INQUIRY-001`), Open Savings Account
-(`ACCT-SAV-OPEN-001`), Open Current Account (`ACCT-CUR-OPEN-001`) and Account
-Inquiry (`ACCT-INQUIRY-001`), plus live decisions in the Authorisation Queue
-(`AUT-QUEUE-001`). Approval of an account opening posts the initial deposit as a
-balanced double-entry journal (Dr Teller Cash, Cr Deposit Liability) and credits
-the new account. See "Build phases" below for what later phases add.
+**Phase 3 (Teller operations + transaction reversal) is complete**, on top of
+Phase 2's executable onboarding. Fourteen operations now run end to end:
+
+- *Phase 2*: Create Retail/Corporate CIF, Modify Customer, Customer 360, Open
+  Savings/Current Account, Account Inquiry — with live queue decisions.
+- *Phase 3*: Open Teller Session (`TEL-SESSION-OPEN-001`), Cash Deposit
+  (`TEL-CASH-DEPOSIT-001`) and Cash Withdrawal (`TEL-CASH-WITHDRAWAL-001`) with
+  denomination capture, freeze/dormant/lien/limit checks enforced at submission
+  and again at approval; Teller Cash Inquiry (`TEL-CASH-POSITION-001`); Teller
+  Cash Closing (`TEL-SESSION-CLOSE-001`) with declared-vs-system variance that
+  raises an exception record; and Transaction Reversal (`TXN-REVERSE-001`) with
+  mirrored compensating journals and an immutable REVERSED link.
+
+See "Build phases" below for what later phases add.
 
 ## Installation
 
@@ -43,7 +48,7 @@ npm install
 npm run dev       # start the Vite dev server
 npm run build     # production build into dist/
 npm run preview   # serve the production build
-npm test          # run the Vitest unit suite (107 tests)
+npm test          # run the Vitest unit suite (127 tests)
 ```
 
 ## Demo credentials (fictional, local only)
@@ -107,13 +112,16 @@ All training data lives in `localStorage` under the `cbte:` prefix; the login
 session lives in `sessionStorage`. Everything survives a browser refresh. There is
 no backend, database or network call in Version 1.
 
-## Known limitations (Phase 2)
+## Known limitations (Phase 3)
 
-- Seven operations are executable end to end (list under "Current status"); every
-  other registry operation still renders an honest placeholder with its delivery
-  phase.
-- Posting runs only through the initial-deposit path (Dr Teller Cash / Cr Deposit
-  Liability). Teller cash movements, transfers and reversals arrive in Phase 3–4.
+- Fourteen operations are executable end to end (list under "Current status");
+  every other registry operation still renders an honest placeholder with its
+  delivery phase.
+- Posting covers initial deposits, teller cash deposits/withdrawals and
+  reversals. Internal transfers, NEFT/RTGS and FD/loan movements arrive in
+  Phase 4–6.
+- Teller cash is tracked per session against a single branch Teller Cash GL;
+  vault and inter-teller transfers are not modelled yet.
 - Demo passwords are stored in plain text in seed JSON by design (local fictional
   training tool). Never reuse these credentials anywhere real.
 - Integration adapters are planned mocks (Phase 8); no real integrations exist.

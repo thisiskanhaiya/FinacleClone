@@ -232,7 +232,7 @@ export const OPERATIONS = Object.freeze([
     modes: [M.INQUIRE], difficulty: 'BEGINNER' }),
 
   // ---------------------------------------------------------------- EXCEPTIONS
-  op({ code: 'TXN-REVERSE-001', name: 'Transaction Reversal', module: MODULES.EXCEPTIONS, phase: 7,
+  op({ code: 'TXN-REVERSE-001', name: 'Transaction Reversal', module: MODULES.EXCEPTIONS, phase: 3,
     keywords: ['reverse', 'reversal', 'undo', 'correction'],
     allowedRoles: [TELLER, TELLER_AUTHORISER, BRANCH_MANAGER], modes: [M.REVERSE, M.INQUIRE], makerChecker: true, financial: true, difficulty: 'ADVANCED' }),
   op({ code: 'TXN-EXCEPTION-001', name: 'Exception Resolution', module: MODULES.EXCEPTIONS, phase: 7,

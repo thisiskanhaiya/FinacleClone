@@ -24,6 +24,11 @@ import ModifyCustomerView from './customer/ModifyCustomerView.vue';
 import Customer360View from './customer/Customer360View.vue';
 import OpenAccountView from './accounts/OpenAccountView.vue';
 import AccountInquiryView from './accounts/AccountInquiryView.vue';
+import TellerSessionOpenView from './teller/TellerSessionOpenView.vue';
+import TellerCashOperationView from './teller/TellerCashOperationView.vue';
+import TellerCashPositionView from './teller/TellerCashPositionView.vue';
+import TellerSessionCloseView from './teller/TellerSessionCloseView.vue';
+import TransactionReversalView from './exceptions/TransactionReversalView.vue';
 
 /**
  * OperationHostView - single entry point for every registry operation.
@@ -43,6 +48,12 @@ const OPERATION_SCREENS = {
   'ACCT-SAV-OPEN-001': OpenAccountView,
   'ACCT-CUR-OPEN-001': OpenAccountView,
   'ACCT-INQUIRY-001': AccountInquiryView,
+  'TEL-SESSION-OPEN-001': TellerSessionOpenView,
+  'TEL-CASH-DEPOSIT-001': TellerCashOperationView,
+  'TEL-CASH-WITHDRAWAL-001': TellerCashOperationView,
+  'TEL-CASH-POSITION-001': TellerCashPositionView,
+  'TEL-SESSION-CLOSE-001': TellerSessionCloseView,
+  'TXN-REVERSE-001': TransactionReversalView,
 };
 
 const route = useRoute();

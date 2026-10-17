@@ -53,6 +53,29 @@ verification.
 8. As `admin01`, reset the environment → CIF000008/SB000008 disappear and the
    seeded pending request returns.
 
+## Manual verification (Phase 3 — teller + reversal)
+
+1. Sign in as `teller01` / `Teller@123` → open **Cash Deposit** → the amber
+   banner says no session is open. Open **Open Teller Session** with float
+   `50000` → session card appears.
+2. **Cash Deposit**: account `SB000002`, amount `5000`, denominations
+   2 x ₹2000 + 2 x ₹500 (total matches) → submit. Try `SB000006` (FROZEN) and a
+   denomination mismatch → both blocked with field errors.
+3. Sign in as `tellerauthoriser01` / `TellerAuth@123` → **Authorisation Queue**
+   → Review → **Authorise**. As any user, **Account Inquiry** `SB000002` shows
+   ₹55,000 with a CREDIT leg.
+4. As `teller01`, **Cash Withdrawal** ₹2,000 from `SB000001` → authoriser
+   approves → balance ₹98,000. Try `SB000005` (DORMANT) and ₹70,000 from
+   `SB000007` (lien leaves only ₹60,000 available) → blocked.
+5. **Teller Cash Inquiry**: expected cash = 50,000 + 5,000 − 2,000 = ₹53,000.
+6. **Teller Cash Closing**: declare `52,500` (₹500 short) → authoriser approves
+   → session CLOSED with variance −₹500; Audit Inquiry shows
+   `TELLER_SESSION_CLOSED` and `EXCEPTION_RAISED`.
+7. **Transaction Reversal**: pick the posted deposit, give a reason, submit →
+   authoriser approves → `SB000002` returns to ₹50,000, the original shows
+   REVERSED, and a `CASH_DEPOSIT_REVERSAL` transaction is linked. Try reversing
+   it again → it no longer appears in the reversible list.
+
 ## Manual verification (Phase 1)
 
 1. `npm install && npm run dev`, open the printed URL.

@@ -26,7 +26,7 @@ ACCT-FREEZE-001 / ACCT-UNFREEZE-001 · ACCT-DEBIT-FREEZE-001 / ACCT-CREDIT-FREEZ
 ACCT-LIEN-001 / ACCT-LIEN-RELEASE-001 · ACCT-DORMANT-001 Dormancy Processing.
 All maker-checker.
 
-## TELLER (Phase 3)
+## TELLER (Phase 3 — live, executable end to end)
 | Code | Name | MC | FIN |
 |---|---|---|---|
 | TEL-SESSION-OPEN-001 | Open Teller Session | | |
@@ -56,8 +56,8 @@ AUT-QUEUE-001 Authorisation Queue (checker roles; Phase 2) · AUT-INQUIRY-001 Au
 TXN-INQUIRY-001 Transaction Inquiry (Phase 4) · TXN-FAILED-001 Failed Transaction Inquiry (Phase 7) ·
 ENQ-AUDIT-001 Audit Inquiry (**live in Phase 1**).
 
-## EXCEPTIONS (Phase 7)
-TXN-REVERSE-001 Transaction Reversal (MC, FIN) · TXN-EXCEPTION-001 Exception Resolution · EXC-QUEUE-001 Exception Queue.
+## EXCEPTIONS (Phase 3/7)
+TXN-REVERSE-001 Transaction Reversal (MC, FIN) — pulled forward to Phase 3, live with mirrored-journal posting · TXN-EXCEPTION-001 Exception Resolution (Phase 7) · EXC-QUEUE-001 Exception Queue (Phase 7).
 
 ## GENERAL_LEDGER (Phase 8)
 GL-JOURNAL-INQUIRY-001 · GL-ACCOUNT-INQUIRY-001 · GL-TRIAL-BALANCE-001 · GL-SUSPENSE-001 · GL-OFFICE-ACCOUNT-001.
