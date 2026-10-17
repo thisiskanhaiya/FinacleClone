@@ -17,7 +17,7 @@
     </p>
     <table class="data-table">
       <thead>
-        <tr><th>Operation</th><th>Name</th><th>Financial</th><th>Maker-checker</th><th></th></tr>
+        <tr><th>Operation</th><th>Name</th><th>Financial</th><th>Maker-checker</th><th>Status</th><th></th></tr>
       </thead>
       <tbody>
         <tr v-for="op in moduleOperations" :key="op.code">
@@ -25,6 +25,10 @@
           <td>{{ op.name }}</td>
           <td>{{ op.financial ? 'Yes' : 'No' }}</td>
           <td>{{ op.makerChecker ? 'Yes' : 'No' }}</td>
+          <td>
+            <span v-if="isLiveOperation(op.code)" class="badge badge-green">Live in simulator</span>
+            <span v-else class="badge badge-grey">Phase {{ op.phase }}</span>
+          </td>
           <td><router-link class="btn btn-link" :to="`/academy/operations/${op.code}`">Learn the concept</router-link></td>
         </tr>
       </tbody>
@@ -42,6 +46,7 @@ import { useRoute } from 'vue-router';
 import { getAcademyModule } from '../../data/academyContent/modules.js';
 import { OPERATION_CONCEPTS } from '../../data/academyContent/operationConcepts.js';
 import { getOperation } from '../../data/operationSpecifications/operations.js';
+import { isLiveOperation } from '../../data/operationSpecifications/liveOperations.js';
 import EmptyState from '../../components/common/EmptyState.vue';
 
 const route = useRoute();

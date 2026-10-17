@@ -76,6 +76,15 @@ export const ACADEMY_MODULES = Object.freeze([
           'Customer 360 is the read-only consolidated view: identity plus every account, deposit, loan and recent transaction. Staff use it constantly at the counter before acting on anything.',
         ],
       },
+      {
+        id: 'live-journey-cif',
+        title: 'Live journey: onboard a customer end to end',
+        body: [
+          'This module\'s operations are LIVE in the simulator — you can perform the full journey now. As maker01 (Maker@123) run Create Retail CIF (CIF-CREATE-001) for a new fictional customer: validation runs (name, phone, ID proof, address; duplicate check on name + phone), the CIF is created as PENDING_AUTHORISATION and a request enters the Authorisation Queue.',
+          'Then sign in as checker01 (Checker@123), open the Authorisation Queue (AUT-QUEUE-001), review the request\'s before/after card and Authorise. The CIF turns ACTIVE with KYC COMPLETE. Verify in Customer 360 Inquiry (CIF-INQUIRY-001) and Audit Inquiry (ENQ-AUDIT-001).',
+          'Also live: Modify Customer (CIF-MODIFY-001) — only phone, email, address and segment are changeable, the request stores exact before/after values, and nothing applies until a checker approves. Try the negative paths too: submit with no changes (blocked), or try to authorise your own request (blocked — that is maker-checker working).',
+        ],
+      },
     ],
   },
   {
@@ -131,6 +140,15 @@ export const ACADEMY_MODULES = Object.freeze([
         title: 'Interest and charges',
         body: [
           'Deposit interest is an expense for the bank, credited periodically. Charges (minimum balance, cheque books, closures) are income. Both post through the GL like any other movement.',
+        ],
+      },
+      {
+        id: 'live-journey-account-opening',
+        title: 'Live journey: open an account and watch money post',
+        body: [
+          'Account opening is LIVE and financial. As maker01 (Maker@123) run Open Savings Account (ACCT-SAV-OPEN-001): pick Neha Verma (CIF000002), product SAV-REG, amount ₹5,000. Eligibility is real — CIF must be ACTIVE with KYC COMPLETE, retail customers only, amount at least the ₹1,000 product minimum. The account is created PENDING_AUTHORISATION with a zero balance and the next SB number (SB000008 on a fresh environment).',
+          'As checker01 (Checker@123), authorise it in the queue. Approval is the posting trigger: the account turns ACTIVE and the system posts Dr Teller Cash GL (TRN-GL-1001) / Cr Savings Deposit Liability GL (TRN-GL-2001) for ₹5,000, credits the account and writes the transaction leg, balanced journal and audit events.',
+          'Verify in Account Inquiry (ACCT-INQUIRY-001): ledger = available = ₹5,000 with one CREDIT leg showing balanceAfter ₹5,000. The current-account twin (ACCT-CUR-OPEN-001) is live too — corporate CIFs only (use CIF000006), ₹10,000 minimum, CA numbering, and it credits the Current Deposit Liability GL (TRN-GL-2002) instead.',
         ],
       },
     ],
@@ -340,6 +358,15 @@ export const ACADEMY_MODULES = Object.freeze([
         title: 'Exceptions',
         body: [
           'Anything the system cannot complete cleanly — a failed gateway message, an unbalanced journal, a stuck request — lands in an exception queue for controlled resolution instead of being silently dropped.',
+        ],
+      },
+      {
+        id: 'live-queue',
+        title: 'Live: decide real requests in the Authorisation Queue',
+        body: [
+          'The Authorisation Queue (AUT-QUEUE-001) is LIVE with full decision power. After every environment reset it contains REQ-SEED-001 — maker01\'s retail CIF for Karan Bedi (CIF000004) waiting for a checker.',
+          'Sign in as checker01 (Checker@123), click Review, read the before/after detail card and decide: Authorise applies the business effect (the CIF turns ACTIVE), Reject ends the request, Return sends it back to the maker for correction and resubmission. Remarks are mandatory for negative decisions, your own requests are marked "Own request" and disabled, and a decided request can never be decided twice.',
+          'Every decision writes an audit event (REQUEST_APPROVED / REJECTED / RETURNED) with maker, checker, remarks and business date — check Audit Inquiry (ENQ-AUDIT-001) afterwards. This queue is the control point for every maker-checker operation you practice.',
         ],
       },
     ],

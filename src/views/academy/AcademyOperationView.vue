@@ -10,9 +10,15 @@
           {{ operation.makerChecker ? 'Maker-checker' : 'Single-user' }}
         </div>
       </div>
-      <a class="btn btn-accent" href="/login" target="_blank" rel="noopener">
-        Open Simulator to practise ↗
-      </a>
+      <div class="flex">
+        <span v-if="live" class="badge badge-green" title="This operation is fully executable in the simulator now">
+          Live in the simulator
+        </span>
+        <span v-else class="badge badge-gold">Scheduled for Phase {{ operation.phase }}</span>
+        <a class="btn btn-accent" href="/login" target="_blank" rel="noopener">
+          Open Simulator to practise ↗
+        </a>
+      </div>
     </div>
 
     <section class="card">
@@ -148,6 +154,7 @@
 import { computed, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { getOperation } from '../../data/operationSpecifications/operations.js';
+import { isLiveOperation } from '../../data/operationSpecifications/liveOperations.js';
 import { getOperationConcept, practiceUsersForOperation } from '../../data/academyContent/operationConcepts.js';
 import { getAcademyModule } from '../../data/academyContent/modules.js';
 import { employeeRepository } from '../../repositories/index.js';
@@ -158,6 +165,7 @@ const route = useRoute();
 
 const operation = computed(() => getOperation(String(route.params.code ?? '').toUpperCase()));
 const concept = computed(() => (operation.value ? getOperationConcept(operation.value.code) : null));
+const live = computed(() => (operation.value ? isLiveOperation(operation.value.code) : false));
 const moduleTitle = computed(() =>
   concept.value ? getAcademyModule(concept.value.academyModule)?.title ?? concept.value.academyModule : '',
 );

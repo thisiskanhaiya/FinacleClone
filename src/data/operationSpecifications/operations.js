@@ -75,10 +75,10 @@ export const OPERATIONS = Object.freeze([
   // ---------------------------------------------------------------- ACCOUNTS
   op({ code: 'ACCT-SAV-OPEN-001', name: 'Open Savings Account', module: MODULES.ACCOUNTS, phase: 2,
     keywords: ['account', 'open', 'savings', 'new account', 'sb'],
-    allowedRoles: CUSTOMER_MAKER_CHECKER, modes: [M.ADD, M.INQUIRE], makerChecker: true, difficulty: 'BEGINNER' }),
+    allowedRoles: CUSTOMER_MAKER_CHECKER, modes: [M.ADD, M.INQUIRE], makerChecker: true, financial: true, difficulty: 'BEGINNER' }),
   op({ code: 'ACCT-CUR-OPEN-001', name: 'Open Current Account', module: MODULES.ACCOUNTS, phase: 2,
     keywords: ['account', 'open', 'current', 'ca', 'business account'],
-    allowedRoles: CUSTOMER_MAKER_CHECKER, modes: [M.ADD, M.INQUIRE], makerChecker: true, difficulty: 'INTERMEDIATE' }),
+    allowedRoles: CUSTOMER_MAKER_CHECKER, modes: [M.ADD, M.INQUIRE], makerChecker: true, financial: true, difficulty: 'INTERMEDIATE' }),
   op({ code: 'ACCT-INQUIRY-001', name: 'Account Inquiry', module: MODULES.ACCOUNTS, phase: 2,
     keywords: ['account', 'inquiry', 'balance', 'view account', 'ledger'],
     allowedRoles: INQUIRY_ROLES, modes: [M.INQUIRE], difficulty: 'BEGINNER' }),

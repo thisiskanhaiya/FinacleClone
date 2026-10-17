@@ -25,7 +25,7 @@
 
     <table v-else class="data-table">
       <thead>
-        <tr><th>Code</th><th>Operation</th><th>Academy module</th><th>Financial</th><th>Maker-checker</th><th></th></tr>
+        <tr><th>Code</th><th>Operation</th><th>Academy module</th><th>Financial</th><th>Maker-checker</th><th>Status</th><th></th></tr>
       </thead>
       <tbody>
         <tr v-for="row in filtered" :key="row.code">
@@ -34,6 +34,10 @@
           <td>{{ row.moduleTitle }}</td>
           <td>{{ row.financial ? 'Yes' : 'No' }}</td>
           <td>{{ row.makerChecker ? 'Yes' : 'No' }}</td>
+          <td>
+            <span v-if="isLiveOperation(row.code)" class="badge badge-green">Live</span>
+            <span v-else class="badge badge-grey">Phase {{ row.phase }}</span>
+          </td>
           <td><router-link class="btn btn-link" :to="`/academy/operations/${row.code}`">Learn</router-link></td>
         </tr>
       </tbody>
@@ -44,6 +48,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 import { OPERATIONS } from '../../data/operationSpecifications/operations.js';
+import { isLiveOperation } from '../../data/operationSpecifications/liveOperations.js';
 import { OPERATION_CONCEPTS } from '../../data/academyContent/operationConcepts.js';
 import { ACADEMY_MODULES_BY_KEY } from '../../data/academyContent/modules.js';
 import EmptyState from '../../components/common/EmptyState.vue';

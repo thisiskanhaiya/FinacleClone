@@ -1,5 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { OPERATIONS, getOperation } from '../../src/data/operationSpecifications/operations.js';
+import { LIVE_JOURNEY_CODES, isLiveOperation } from '../../src/data/operationSpecifications/liveOperations.js';
 import {
   OPERATION_CONCEPTS,
   getOperationConcept,
@@ -81,6 +82,31 @@ describe('per-operation concept pages (10 sections each)', () => {
       const count = Object.values(OPERATION_CONCEPTS).filter((c) => c.academyModule === m.key).length;
       expect(count, m.key).toBeGreaterThan(0);
     }
+  });
+});
+
+describe('live (executable) operations teaching contract', () => {
+  it('every live journey operation exists in the registry with a concept page', () => {
+    for (const code of LIVE_JOURNEY_CODES) {
+      expect(getOperation(code), code).not.toBeNull();
+      expect(getOperationConcept(code), code).not.toBeNull();
+      expect(isLiveOperation(code)).toBe(true);
+    }
+  });
+
+  it('live financial operations document the exact GLs the simulator posts', () => {
+    const sav = OPERATION_CONCEPTS['ACCT-SAV-OPEN-001'];
+    expect(sav.accounting.debit).toContain('TRN-GL-1001');
+    expect(sav.accounting.credit).toContain('TRN-GL-2001');
+    const cur = OPERATION_CONCEPTS['ACCT-CUR-OPEN-001'];
+    expect(cur.accounting.credit).toContain('TRN-GL-2002');
+  });
+
+  it('live concept pages name the real demo users and seed data they teach with', () => {
+    expect(OPERATION_CONCEPTS['CIF-CREATE-001'].practice.login).toContain('maker01');
+    expect(OPERATION_CONCEPTS['AUT-QUEUE-001'].practice.expectedResult).toContain('REQ-SEED-001');
+    expect(OPERATION_CONCEPTS['CIF-MODIFY-001'].concept).toContain('phone, email, address and segment');
+    expect(OPERATION_CONCEPTS['ACCT-SAV-OPEN-001'].practice.customer).toBe('Neha Verma');
   });
 });
 
