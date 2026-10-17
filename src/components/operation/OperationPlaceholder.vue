@@ -14,7 +14,7 @@
     <div class="alert alert-info">
       The operation framework (navigation, permission enforcement, search, audit) is live.
       The executable screen for <strong>{{ operation.code }}</strong> is delivered in
-      Phase {{ operation.phase }} of the build plan, together with its full training guide.
+      Phase {{ operation.phase }} of the build plan.
     </div>
 
     <div class="card">
@@ -33,9 +33,6 @@
     </div>
 
     <div class="flex">
-      <router-link class="btn btn-accent" :to="`/training/operations/${operation.code}`">
-        Open Training Guide
-      </router-link>
       <router-link class="btn" to="/simulator">Back to dashboard</router-link>
     </div>
   </div>

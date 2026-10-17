@@ -8,7 +8,6 @@
     <p v-if="from" class="small muted">Requested: <span class="mono">{{ from }}</span></p>
     <div class="flex">
       <router-link class="btn btn-primary" to="/simulator">Back to dashboard</router-link>
-      <router-link class="btn" to="/training">Open Training Workbook</router-link>
     </div>
   </div>
 </template>

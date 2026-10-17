@@ -8,7 +8,7 @@ import { ROLES } from '../domain/enums/roles.js';
 
 import AuthLayout from '../layouts/AuthLayout.vue';
 import SimulatorLayout from '../layouts/SimulatorLayout.vue';
-import TrainingLayout from '../layouts/TrainingLayout.vue';
+import AcademyLayout from '../layouts/AcademyLayout.vue';
 
 import LoginView from '../views/auth/LoginView.vue';
 import AboutView from '../views/auth/AboutView.vue';
@@ -18,8 +18,10 @@ import DashboardView from '../views/simulator/dashboard/DashboardView.vue';
 import ModuleOperationsView from '../views/simulator/ModuleOperationsView.vue';
 import OperationHostView from '../views/simulator/OperationHostView.vue';
 import AdminDashboardView from '../views/simulator/administration/AdminDashboardView.vue';
-import CatalogueView from '../views/training/catalogue/CatalogueView.vue';
-import OperationGuideView from '../views/training/operationGuide/OperationGuideView.vue';
+import AcademyHomeView from '../views/academy/AcademyHomeView.vue';
+import AcademyModuleView from '../views/academy/AcademyModuleView.vue';
+import AcademyOperationsIndexView from '../views/academy/AcademyOperationsIndexView.vue';
+import AcademyOperationView from '../views/academy/AcademyOperationView.vue';
 
 const routes = [
   {
@@ -61,16 +63,16 @@ const routes = [
     ],
   },
   {
-    path: '/training',
-    component: TrainingLayout,
+    // Operations Academy - concept learning, separate application shell.
+    // Public by design (fictional educational content) so it can be opened
+    // in a second browser window alongside the simulator.
+    path: '/academy',
+    component: AcademyLayout,
     children: [
-      { path: '', name: 'training-catalogue', component: CatalogueView, meta: { title: 'Bank Operations Workbook' } },
-      {
-        path: 'operations/:code',
-        name: 'training-operation',
-        component: OperationGuideView,
-        meta: { title: 'Operation Guide' },
-      },
+      { path: '', name: 'academy-home', component: AcademyHomeView, meta: { public: true, title: 'Operations Academy' } },
+      { path: 'modules/:module', name: 'academy-module', component: AcademyModuleView, meta: { public: true, title: 'Academy Module' } },
+      { path: 'operations', name: 'academy-operations', component: AcademyOperationsIndexView, meta: { public: true, title: 'All Operations' } },
+      { path: 'operations/:code', name: 'academy-operation', component: AcademyOperationView, meta: { public: true, title: 'Operation Concept' } },
     ],
   },
   { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFoundView, meta: { public: true, title: 'Not Found' } },

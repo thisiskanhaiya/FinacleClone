@@ -4,11 +4,18 @@
 
 One Vue 3 + Vite project containing two applications with separate layouts:
 
-- **Branch Operations Simulator** — `SimulatorLayout` (header with global operation
-  search, branch, business date, clock, user/role, pending authorisation count;
-  left module navigation; bottom status bar with the LOCAL TRAINING ENVIRONMENT flag).
-- **Bank Operations Workbook** — `TrainingLayout` (teal identity, catalogue nav).
-- **Auth** — `AuthLayout` (login + about, both carrying the affiliation disclaimer).
+- **Core Banking Simulator** (`/simulator`) — `SimulatorLayout` (header with global
+  operation search, branch, business date, clock, user/role, pending authorisation
+  count; left module navigation; bottom status bar with the LOCAL TRAINING
+  ENVIRONMENT flag). It contains no training content, walkthroughs or theory.
+- **Operations Academy** (`/academy`) — `AcademyLayout`, a separate application shell
+  with its own navigation (9 concept modules + operations index). Public routes so
+  the Academy can open in a second browser window next to the simulator. Content
+  teaches banking concepts only; each operation concept page ends with a Simulator
+  Practice box (demo credentials for the operation, test data, expected result,
+  verification pointers).
+- **Auth** — `AuthLayout` (login + about, both carrying the affiliation disclaimer
+  and the Open Operations Academy link with `target="_blank"`).
 
 ## Layering rules
 
@@ -62,7 +69,8 @@ src/
     auth/  errors/
     simulator/{dashboard,customer,accounts,teller,transfers,deposits,loans,
                servicing,authorisation,enquiries,generalLedger,dayEnd,administration}/
-    training/{catalogue,operationGuide,guidedPractice,scenarioVerification}/
+    academy/   (AcademyHome, AcademyModule, AcademyOperation, AcademyOperationsIndex)
+  data/academyContent/   (modules.js concept curriculum, operationConcepts.js)
   domain/{models,enums,rules,validators,workflows}/
   engine/{BankingOperationEngine,WorkflowEngine,AuthorisationEngine,
           AccountingEngine,AuditEngine,IntegrationEngine,DayEndEngine}.js

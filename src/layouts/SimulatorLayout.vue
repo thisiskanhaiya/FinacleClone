@@ -52,8 +52,6 @@
           </span>
         </template>
 
-        <div class="nav-section">Cross-application</div>
-        <router-link class="nav-item" to="/training">Bank Operations Workbook</router-link>
       </nav>
 
       <main class="layout-main">

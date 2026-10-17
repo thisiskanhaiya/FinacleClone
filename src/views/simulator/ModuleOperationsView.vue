@@ -29,7 +29,6 @@
             <router-link class="btn btn-primary" :to="op.route">Launch</router-link>
           </template>
           <span v-else class="badge badge-red">Not authorised for your current role</span>
-          <router-link class="btn" :to="`/training/operations/${op.code}`">Guide</router-link>
         </div>
       </div>
     </div>

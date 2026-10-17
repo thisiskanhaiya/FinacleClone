@@ -30,11 +30,11 @@
     </div>
 
     <div class="card">
-      <div class="card-title">Get started</div>
+      <div class="card-title">Workstation shortcuts</div>
       <p>
-        Press <code>/</code> to focus the operation search, or <code>Ctrl+K</code> for the command
-        palette. Every operation can also be reached from the left navigation. Each operation has
-        a matching guide in the <router-link to="/training">Bank Operations Workbook</router-link>.
+        Press <code>/</code> to focus the operation search, <code>Ctrl+K</code> for the command
+        palette, <code>Alt+A</code> for the authorisation queue and <code>Alt+I</code> for account
+        inquiry. Operations are also reachable from the module navigation on the left.
       </p>
     </div>
 

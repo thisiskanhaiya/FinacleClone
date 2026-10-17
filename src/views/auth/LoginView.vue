@@ -36,6 +36,16 @@
         <DemoCredentialsPanel />
       </div>
     </div>
+
+    <div class="mt-16" style="border-top: 1px solid var(--grey-200); padding-top: 14px;">
+      <a class="btn btn-accent" style="width:100%; justify-content:center;" href="/academy" target="_blank" rel="noopener">
+        Open Operations Academy ↗
+      </a>
+      <p class="small muted mt-8" style="text-align:center;">
+        New here? Learn the banking concepts in the Academy (opens in a new window),
+        then come back and perform the operations.
+      </p>
+    </div>
   </div>
 </template>
 
