@@ -20,9 +20,38 @@
 Conventions: pure domain/engine logic is tested directly; services are tested with
 `MemoryStorageAdapter`; guard logic is tested via the pure `decideNavigation`.
 
-Later phases add: CIF/account validators, transfer atomicity, duplicate posting,
-FD maturity, EMI calculation/recovery, reversal, day-end duplicate prevention,
-scenario preparation and completion verification.
+Phase 2 adds `phase2Validators.test.js` (CIF/account-opening validators, ID
+sequences) and `phase2Workflows.test.js` (full maker-checker journeys executed
+against the real repositories: CIF create/modify/approve, self-authorisation
+block, reject/return/resubmit, account opening with balanced journal posting,
+GL movement, duplicate-posting prevention, unbalanced-journal rejection).
+
+Later phases add: transfer atomicity, FD maturity, EMI calculation/recovery,
+reversal, day-end duplicate prevention, scenario preparation and completion
+verification.
+
+## Manual verification (Phase 2)
+
+1. Sign in as `maker01` / `Maker@123` → open **Create Retail CIF** (search `cif`
+   or press `Ctrl+K`). Fill the form and submit → green panel shows the new
+   request ID and pending CIF (`CIF000008`).
+2. Sign in as `checker01` / `Checker@123` → **Authorisation Queue** shows the
+   request plus the seeded `REQ-SEED-001` (Karan Bedi). Click **Review** → the
+   before/after detail card renders → **Authorise**.
+3. Back as `maker01`, open **Customer 360 Inquiry** → the new customer is ACTIVE
+   with KYC COMPLETE.
+4. Negative path: as `maker01` submit a CIF, stay signed in, open the queue deep
+   link → your own request shows "Own request" and cannot be decided
+   (self-authorisation blocked; attempts are audited).
+5. As `maker01`, open **Open Savings Account** → select `CIF000002` (Neha Verma),
+   product `SAV-REG`, amount `5000.00` → submit. As `checker01`, authorise it.
+6. Open **Account Inquiry** (`SB000008`): status ACTIVE, ledger 5,000.00, one
+   CREDIT leg with balanceAfter 5,000.00. Audit Inquiry shows
+   `TRANSACTION_POSTED`, `JOURNAL_POSTED` and `BALANCE_UPDATED`.
+7. As `checker01`, try rejecting a request without remarks → the decision is
+   blocked with a validation error; with remarks it succeeds.
+8. As `admin01`, reset the environment → CIF000008/SB000008 disappear and the
+   seeded pending request returns.
 
 ## Manual verification (Phase 1)
 

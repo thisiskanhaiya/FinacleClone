@@ -9,6 +9,7 @@ import termDeposits from './termDeposits.json';
 import loans from './loans.json';
 import transactions from './transactions.json';
 import integrationMessages from './integrationMessages.json';
+import authorisationRequests from './authorisationRequests.json';
 
 export const SEED_VERSION = '1.0.0';
 
@@ -29,6 +30,7 @@ export const SEED_FILES = Object.freeze({
   loans,
   transactions,
   integrationMessages,
+  authorisationRequests,
 });
 
 /** Runtime collections that must exist but start empty on reset. */
@@ -37,7 +39,6 @@ export const EMPTY_COLLECTIONS = Object.freeze([
   'transactionLegs',
   'journals',
   'journalLines',
-  'authorisationRequests',
   'tellerSessions',
   'exceptions',
   'auditEvents',

@@ -21,7 +21,15 @@ experiences** in one Vue 3 project:
 
 ## Current status
 
-**Phase 1 (Foundation) is complete.** See "Build phases" below for what each phase adds.
+**Phase 2 (Customer and account onboarding, executable end to end) is complete.**
+Seven operations run as real maker-checker flows: Create Retail CIF
+(`CIF-CREATE-001`), Create Corporate CIF (`CIF-CORP-001`), Modify Customer
+(`CIF-MODIFY-001`), Customer 360 Inquiry (`CIF-INQUIRY-001`), Open Savings Account
+(`ACCT-SAV-OPEN-001`), Open Current Account (`ACCT-CUR-OPEN-001`) and Account
+Inquiry (`ACCT-INQUIRY-001`), plus live decisions in the Authorisation Queue
+(`AUT-QUEUE-001`). Approval of an account opening posts the initial deposit as a
+balanced double-entry journal (Dr Teller Cash, Cr Deposit Liability) and credits
+the new account. See "Build phases" below for what later phases add.
 
 ## Installation
 
@@ -35,7 +43,7 @@ npm install
 npm run dev       # start the Vite dev server
 npm run build     # production build into dist/
 npm run preview   # serve the production build
-npm test          # run the Vitest unit suite (67 tests)
+npm test          # run the Vitest unit suite (107 tests)
 ```
 
 ## Demo credentials (fictional, local only)
@@ -99,14 +107,15 @@ All training data lives in `localStorage` under the `cbte:` prefix; the login
 session lives in `sessionStorage`. Everything survives a browser refresh. There is
 no backend, database or network call in Version 1.
 
-## Known limitations (Phase 1)
+## Known limitations (Phase 2)
 
-- Executable operation screens are delivered per phase; Phase 1 ships the framework
-  (auth, permissions, registry, search, audit, seed/reset) with honest placeholders
-  showing each operation's identity and delivery phase.
+- Seven operations are executable end to end (list under "Current status"); every
+  other registry operation still renders an honest placeholder with its delivery
+  phase.
+- Posting runs only through the initial-deposit path (Dr Teller Cash / Cr Deposit
+  Liability). Teller cash movements, transfers and reversals arrive in Phase 3–4.
 - Demo passwords are stored in plain text in seed JSON by design (local fictional
   training tool). Never reuse these credentials anywhere real.
-- AccountingEngine ships the balancing invariant only; posting arrives in Phase 3–4.
 - Integration adapters are planned mocks (Phase 8); no real integrations exist.
 
 ## Future Spring Boot integration

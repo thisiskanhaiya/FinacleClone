@@ -1,0 +1,45 @@
+[
+  {
+    "id": "REQ-SEED-001",
+    "operationCode": "CIF-CREATE-001",
+    "entityType": "CUSTOMER",
+    "entityId": "CIF000004",
+    "summary": "Create retail CIF - Karan Bedi",
+    "amount": null,
+    "payload": {
+      "cif": "CIF000004",
+      "name": "Karan Bedi",
+      "type": "RETAIL",
+      "segment": "REGULAR",
+      "riskCategory": "LOW",
+      "idProofType": "PAN_CARD",
+      "idProofNumber": "DEMOP1234K",
+      "email": "karan.bedi@example.invalid",
+      "phone": "+91-9000000004",
+      "address": "14 Demo Residency, Pune"
+    },
+    "beforeValues": null,
+    "afterValues": {
+      "cif": "CIF000004",
+      "name": "Karan Bedi",
+      "type": "RETAIL",
+      "segment": "REGULAR",
+      "riskCategory": "LOW",
+      "idProofType": "PAN_CARD",
+      "idProofNumber": "DEMOP1234K",
+      "email": "karan.bedi@example.invalid",
+      "phone": "+91-9000000004",
+      "address": "14 Demo Residency, Pune"
+    },
+    "makerId": "maker01",
+    "makerRole": "CUSTOMER_SERVICE_MAKER",
+    "checkerId": null,
+    "decision": null,
+    "remarks": "",
+    "status": "PENDING_AUTHORISATION",
+    "branch": "BR001",
+    "businessDate": "2026-10-17",
+    "createdAt": "2026-10-17T09:15:00.000Z",
+    "decidedAt": null
+  }
+]
