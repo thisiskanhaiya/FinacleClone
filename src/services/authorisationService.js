@@ -11,6 +11,7 @@ import { postFinancialTransaction } from './postingService.js';
 import { DEPOSIT_LIABILITY_GL, TELLER_CASH_GL } from './accountService.js';
 import { applyTellerApprovalEffect } from './tellerService.js';
 import { applyReversalEffect } from './reversalService.js';
+import { applyPaymentApprovalEffect } from './transferService.js';
 
 /**
  * AuthorisationService - checker decisions (Phase 2).
@@ -77,6 +78,13 @@ async function applyApprovalEffect(request, session, businessDate) {
       return applyTellerApprovalEffect(request, session, businessDate);
     case 'TXN-REVERSE-001':
       return applyReversalEffect(request, session, businessDate);
+    case 'PAY-INTERNAL-001':
+    case 'PAY-NEFT-001':
+    case 'PAY-RTGS-001':
+    case 'PAY-SI-CREATE-001':
+    case 'PAY-SI-EXECUTE-001':
+    case 'PAY-SI-CANCEL-001':
+      return applyPaymentApprovalEffect(request, session, businessDate);
     default:
       throw new ValidationError(`No approval effect is implemented for ${request.operationCode} in this phase.`);
   }

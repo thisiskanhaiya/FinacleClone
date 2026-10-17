@@ -29,6 +29,10 @@ import TellerCashOperationView from './teller/TellerCashOperationView.vue';
 import TellerCashPositionView from './teller/TellerCashPositionView.vue';
 import TellerSessionCloseView from './teller/TellerSessionCloseView.vue';
 import TransactionReversalView from './exceptions/TransactionReversalView.vue';
+import InternalTransferView from './transfers/InternalTransferView.vue';
+import OutwardPaymentView from './transfers/OutwardPaymentView.vue';
+import StandingInstructionView from './transfers/StandingInstructionView.vue';
+import TransactionInquiryView from './enquiries/TransactionInquiryView.vue';
 
 /**
  * OperationHostView - single entry point for every registry operation.
@@ -54,6 +58,13 @@ const OPERATION_SCREENS = {
   'TEL-CASH-POSITION-001': TellerCashPositionView,
   'TEL-SESSION-CLOSE-001': TellerSessionCloseView,
   'TXN-REVERSE-001': TransactionReversalView,
+  'PAY-INTERNAL-001': InternalTransferView,
+  'PAY-NEFT-001': OutwardPaymentView,
+  'PAY-RTGS-001': OutwardPaymentView,
+  'PAY-SI-CREATE-001': StandingInstructionView,
+  'PAY-SI-EXECUTE-001': StandingInstructionView,
+  'PAY-SI-CANCEL-001': StandingInstructionView,
+  'TXN-INQUIRY-001': TransactionInquiryView,
 };
 
 const route = useRoute();

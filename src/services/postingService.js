@@ -22,10 +22,14 @@ import { ValidationError, WorkflowError } from '../utils/errors.js';
  * never directly from a component.
  */
 
-/** Signed GL impact: assets/expenses/suspense grow with debits; liabilities/income grow with credits. */
+/**
+ * Signed GL impact: assets/expenses grow with debits; liabilities/income grow
+ * with credits. SUSPENSE here is the outward-payment parking account (money
+ * owed to settlement), so it behaves like a liability: credits increase it.
+ */
 export function glBalanceDelta(glCategory, side, amount) {
   const cents = toCents(amount);
-  const debitIncreases = ['ASSET', 'EXPENSE', 'SUSPENSE'].includes(glCategory);
+  const debitIncreases = ['ASSET', 'EXPENSE'].includes(glCategory);
   if (!['ASSET', 'EXPENSE', 'SUSPENSE', 'LIABILITY', 'INCOME'].includes(glCategory)) {
     throw new ValidationError(`Unknown GL category: ${glCategory}.`);
   }

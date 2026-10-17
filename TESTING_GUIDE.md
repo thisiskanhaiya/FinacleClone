@@ -2,7 +2,7 @@
 
 ## Automated tests (Vitest, jsdom)
 
-`npm test` — 67 unit tests across 10 suites:
+`npm test` — 140 unit tests across 15 suites:
 
 | Suite | Covers |
 |---|---|
@@ -26,9 +26,15 @@ against the real repositories: CIF create/modify/approve, self-authorisation
 block, reject/return/resubmit, account opening with balanced journal posting,
 GL movement, duplicate-posting prevention, unbalanced-journal rejection).
 
-Later phases add: transfer atomicity, FD maturity, EMI calculation/recovery,
-reversal, day-end duplicate prevention, scenario preparation and completion
-verification.
+Phase 3 adds `phase3Teller.test.js` (session open/close with variance
+exceptions, cash deposit/withdrawal double validation, limits, reversals with
+mirrored journals). Phase 4 adds `phase4Payments.test.js` (internal transfers
+across liability GLs, NEFT/RTGS with suspense routing, gateway messages and the
+₹2,00,000 RTGS minimum, standing-instruction lifecycle with due-date
+advancement, transaction inquiry).
+
+Later phases add: FD maturity, EMI calculation/recovery, day-end duplicate
+prevention, scenario preparation and completion verification.
 
 ## Manual verification (Phase 2)
 
@@ -75,6 +81,31 @@ verification.
    authoriser approves → `SB000002` returns to ₹50,000, the original shows
    REVERSED, and a `CASH_DEPOSIT_REVERSAL` transaction is linked. Try reversing
    it again → it no longer appears in the reversible list.
+
+## Manual verification (Phase 4 — transfers and payments)
+
+1. **Internal transfer**: as `teller01` / `Teller@123` open **Internal Fund
+   Transfer** → source `SB000001`, destination `SB000002`, amount `10000` →
+   submit. Balances do not move yet. As `tellerauthoriser01` /
+   `TellerAuth@123` approve from the **Authorisation Queue** → `SB000001` =
+   ₹90,000 and `SB000002` = ₹60,000 in Account Inquiry.
+2. Negative paths: same account on both sides, frozen destination `SB000006`,
+   and ₹8,000 from `SB000004` (only ₹7,500 available) → all refused at
+   submission.
+3. **NEFT**: as `teller01`, source `CA000001`, ₹50,000, beneficiary "Supplier
+   One", a/c `502000123456`, IFSC `HDFC0001234` → submit, authoriser approves.
+   `CA000001` = ₹2,00,000; GL inquiry in the Academy explains suspense
+   (TRN-GL-9001 +₹50,000). Try a malformed IFSC → blocked.
+4. **RTGS**: same screen with `RTGS` — try ₹50,000 → refused ("below the RTGS
+   minimum"); ₹2,00,000 → posts after approval, `CA000001` = ₹50,000.
+5. **Standing instruction**: Create tab — `SB000001` → `SB000002`, ₹2,000,
+   MONTHLY, start `2026-10-17` → approve → ACTIVE. Execute tab — the mandate
+   is listed as due → execute → approve → balances move and next due date is
+   `2026-11-17`; executing again is refused. Cancel tab — cancel → approve →
+   CANCELLED.
+6. **Transaction inquiry**: open **Transaction Inquiry** as any user, filter
+   `INTERNAL_TRANSFER` → the transfer shows with balanced journal lines and two
+   legs (DEBIT/Credit with balanceAfter).
 
 ## Manual verification (Phase 1)
 

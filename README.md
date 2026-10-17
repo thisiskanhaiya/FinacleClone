@@ -21,8 +21,8 @@ experiences** in one Vue 3 project:
 
 ## Current status
 
-**Phase 3 (Teller operations + transaction reversal) is complete**, on top of
-Phase 2's executable onboarding. Fourteen operations now run end to end:
+**Phase 4 (Transfers and payments) is complete**, on top of the teller and
+onboarding phases. Twenty-one operations now run end to end:
 
 - *Phase 2*: Create Retail/Corporate CIF, Modify Customer, Customer 360, Open
   Savings/Current Account, Account Inquiry — with live queue decisions.
@@ -33,6 +33,13 @@ Phase 2's executable onboarding. Fourteen operations now run end to end:
   Cash Closing (`TEL-SESSION-CLOSE-001`) with declared-vs-system variance that
   raises an exception record; and Transaction Reversal (`TXN-REVERSE-001`) with
   mirrored compensating journals and an immutable REVERSED link.
+- *Phase 4*: Internal Fund Transfer (`PAY-INTERNAL-001`) with one balanced
+  two-leg posting; NEFT (`PAY-NEFT-001`) and RTGS (`PAY-RTGS-001`) outward
+  payments that debit the customer into the Suspense GL and record a simulated
+  gateway message (RTGS enforces the ₹2,00,000 minimum); Standing Instructions
+  (`PAY-SI-CREATE/EXECUTE/CANCEL-001`) with a due list, date advancement and
+  non-financial cancellation; and Transaction Inquiry (`TXN-INQUIRY-001`)
+  showing balanced journal lines next to account legs.
 
 See "Build phases" below for what later phases add.
 
@@ -48,7 +55,7 @@ npm install
 npm run dev       # start the Vite dev server
 npm run build     # production build into dist/
 npm run preview   # serve the production build
-npm test          # run the Vitest unit suite (127 tests)
+npm test          # run the Vitest unit suite (140 tests)
 ```
 
 ## Demo credentials (fictional, local only)
@@ -112,19 +119,21 @@ All training data lives in `localStorage` under the `cbte:` prefix; the login
 session lives in `sessionStorage`. Everything survives a browser refresh. There is
 no backend, database or network call in Version 1.
 
-## Known limitations (Phase 3)
+## Known limitations (Phase 4)
 
-- Fourteen operations are executable end to end (list under "Current status");
+- Twenty-one operations are executable end to end (list under "Current status");
   every other registry operation still renders an honest placeholder with its
   delivery phase.
-- Posting covers initial deposits, teller cash deposits/withdrawals and
-  reversals. Internal transfers, NEFT/RTGS and FD/loan movements arrive in
-  Phase 4–6.
+- Posting covers initial deposits, teller cash movements, reversals, internal
+  transfers and outward NEFT/RTGS payments (customer debit into Suspense).
+  FD and loan movements arrive in Phase 5–6.
+- Outward gateway messages are recorded as SENT with a correlation id; the
+  Integration Console (retry/clearing) arrives in Phase 8. Suspense clearing is
+  not yet an operation.
 - Teller cash is tracked per session against a single branch Teller Cash GL;
   vault and inter-teller transfers are not modelled yet.
 - Demo passwords are stored in plain text in seed JSON by design (local fictional
   training tool). Never reuse these credentials anywhere real.
-- Integration adapters are planned mocks (Phase 8); no real integrations exist.
 
 ## Future Spring Boot integration
 

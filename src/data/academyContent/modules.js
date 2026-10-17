@@ -230,14 +230,27 @@ export const ACADEMY_MODULES = Object.freeze([
         id: 'rtgs',
         title: 'RTGS',
         body: [
-          'RTGS is for high-value, immediately-settled payments. Because of the amounts involved, higher authorisation thresholds typically apply.',
+          'RTGS is for high-value, immediately-settled payments — in India it carries a minimum amount (₹2,00,000), below which a payment belongs on NEFT.',
         ],
       },
       {
         id: 'standing-instructions',
         title: 'Standing instructions',
         body: [
-          'A standing instruction is a recurring scheduled transfer (rent, SIP, EMI to own account). It is created once with maker-checker control and executed automatically on each due date, often during day-end batch processing.',
+          'A standing instruction is a recurring scheduled transfer (rent, SIP, EMI to own account). It is created once with maker-checker control and executed on each due date — in production by a batch; here you trigger it by hand to see the mechanics.',
+        ],
+      },
+      {
+        id: 'live-journey-payments',
+        title: 'Live journey: move money end to end',
+        live: true,
+        body: [
+          'Phase 4 makes this module executable. Run it with teller01 (maker) and tellerauthoriser01 (checker), then inspect with auditor01:',
+          '1. Internal transfer: teller01 moves ₹10,000 from SB000001 to SB000002 — one approval, one balanced journal, two legs. Nothing moves while the request waits.',
+          '2. NEFT: teller01 pays ₹50,000 from CA000001 to a beneficiary (IFSC HDFC0001234). Approval debits the account into Suspense (TRN-GL-9001) and records a NEFT_OUTWARD gateway message (SENT).',
+          '3. RTGS: same flow, but the ₹2,00,000 minimum applies — try ₹50,000 first and read the refusal, then send ₹2,00,000 successfully.',
+          '4. Standing instruction: create a ₹2,000 monthly mandate SB000001 → SB000002 (start today, 2026-10-17), approve it ACTIVE, execute it from the due list — watch nextDueDate jump to 2026-11-17 — then cancel it.',
+          '5. Trace everything: Transaction Inquiry shows each POSTED transaction with its journal lines and legs; Audit Trail records every submission and decision.',
         ],
       },
     ],

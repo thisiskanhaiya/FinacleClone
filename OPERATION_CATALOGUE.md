@@ -35,10 +35,10 @@ All maker-checker.
 | TEL-CASH-POSITION-001 | Teller Cash Inquiry | | |
 | TEL-SESSION-CLOSE-001 | Teller Cash Closing | ✔ | |
 
-## TRANSFERS (Phase 4)
-PAY-INTERNAL-001 Internal Fund Transfer (MC, FIN) · PAY-NEFT-001 NEFT Simulation (MC, FIN) ·
-PAY-RTGS-001 RTGS Simulation (MC, FIN) · PAY-SI-CREATE-001 / PAY-SI-EXECUTE-001 (FIN) /
-PAY-SI-CANCEL-001 Standing Instructions.
+## TRANSFERS (Phase 4 — live, executable end to end)
+PAY-INTERNAL-001 Internal Fund Transfer (MC, FIN) · PAY-NEFT-001 NEFT Simulation (MC, FIN, suspense + gateway message) ·
+PAY-RTGS-001 RTGS Simulation (MC, FIN, ₹2,00,000 minimum) · PAY-SI-CREATE-001 / PAY-SI-EXECUTE-001 (MC, FIN) /
+PAY-SI-CANCEL-001 Standing Instructions (MC).
 
 ## TERM_DEPOSITS (Phase 5)
 TD-CREATE-001 (MC, FIN) · TD-INQUIRY-001 · TD-MATURITY-001 (MC, FIN) · TD-RENEW-001 (MC, FIN) ·
@@ -53,7 +53,7 @@ LOAN-PARTPAY-001 (MC, FIN) · LOAN-PRECLOSE-001 (MC, FIN) · LOAN-OVERDUE-001 ·
 AUT-QUEUE-001 Authorisation Queue (checker roles; Phase 2) · AUT-INQUIRY-001 Authorisation Inquiry (all roles; Phase 8).
 
 ## ENQUIRIES
-TXN-INQUIRY-001 Transaction Inquiry (Phase 4) · TXN-FAILED-001 Failed Transaction Inquiry (Phase 7) ·
+TXN-INQUIRY-001 Transaction Inquiry (**live in Phase 4**; journal lines + legs) · TXN-FAILED-001 Failed Transaction Inquiry (Phase 7) ·
 ENQ-AUDIT-001 Audit Inquiry (**live in Phase 1**).
 
 ## EXCEPTIONS (Phase 3/7)
