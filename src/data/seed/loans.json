@@ -1,0 +1,38 @@
+[
+  {
+    "id": "LN000001",
+    "loanAccount": "LN000001",
+    "cif": "CIF000001",
+    "customerName": "Amit Sharma",
+    "productCode": "LOAN-PL",
+    "principal": 500000.0,
+    "outstandingPrincipal": 420000.0,
+    "interestRatePercent": 11.5,
+    "termMonths": 60,
+    "emiAmount": 10996.0,
+    "disbursedOn": "2025-04-10",
+    "nextEmiDueOn": "2026-11-05",
+    "overdueAmount": 0.0,
+    "status": "ACTIVE",
+    "branch": "BR001",
+    "fictional": true
+  },
+  {
+    "id": "LN000002",
+    "loanAccount": "LN000002",
+    "cif": "CIF000007",
+    "customerName": "Vikram Joshi",
+    "productCode": "LOAN-PL",
+    "principal": 200000.0,
+    "outstandingPrincipal": 180000.0,
+    "interestRatePercent": 11.5,
+    "termMonths": 36,
+    "emiAmount": 6595.0,
+    "disbursedOn": "2025-08-20",
+    "nextEmiDueOn": "2026-09-20",
+    "overdueAmount": 6595.0,
+    "status": "ACTIVE_OVERDUE",
+    "branch": "BR001",
+    "fictional": true
+  }
+]

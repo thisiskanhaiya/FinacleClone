@@ -1,0 +1,15 @@
+[
+  {
+    "id": "MSG-SEED-000001",
+    "operation": "NEFT_OUTWARD",
+    "adapter": "NEFT_GATEWAY",
+    "requestSummary": "Seeded mock NEFT outward message (fictional)",
+    "responseStatus": "FAILED",
+    "responseCode": "MOCK_TIMEOUT",
+    "failureReason": "Simulated gateway timeout for training",
+    "retryCount": 1,
+    "correlationId": "COR-SEED-000001",
+    "timestamp": "2026-10-17T08:55:00.000Z",
+    "fictional": true
+  }
+]

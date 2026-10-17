@@ -1,0 +1,112 @@
+[
+  {
+    "id": "EMP-001",
+    "username": "maker01",
+    "password": "Maker@123",
+    "displayName": "Demo Maker One",
+    "role": "CUSTOMER_SERVICE_MAKER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-002",
+    "username": "checker01",
+    "password": "Checker@123",
+    "displayName": "Demo Checker One",
+    "role": "OPERATIONS_CHECKER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-003",
+    "username": "teller01",
+    "password": "Teller@123",
+    "displayName": "Demo Teller One",
+    "role": "TELLER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-004",
+    "username": "tellerauthoriser01",
+    "password": "TellerAuth@123",
+    "displayName": "Demo Teller Authoriser",
+    "role": "TELLER_AUTHORISER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-005",
+    "username": "depositmaker01",
+    "password": "Deposit@123",
+    "displayName": "Demo Deposit Maker",
+    "role": "DEPOSIT_MAKER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-006",
+    "username": "depositchecker01",
+    "password": "Deposit@123",
+    "displayName": "Demo Deposit Checker",
+    "role": "DEPOSIT_CHECKER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-007",
+    "username": "loanofficer01",
+    "password": "Loan@123",
+    "displayName": "Demo Loan Officer",
+    "role": "LOAN_OFFICER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-008",
+    "username": "loanmanager01",
+    "password": "Loan@123",
+    "displayName": "Demo Loan Manager",
+    "role": "LOAN_MANAGER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-009",
+    "username": "manager01",
+    "password": "Manager@123",
+    "displayName": "Demo Branch Manager",
+    "role": "BRANCH_MANAGER",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-010",
+    "username": "auditor01",
+    "password": "Audit@123",
+    "displayName": "Demo Auditor",
+    "role": "AUDITOR",
+    "branch": "BR001",
+    "status": "ACTIVE",
+    "isDemo": true
+  },
+  {
+    "id": "EMP-011",
+    "username": "admin01",
+    "password": "Admin@123",
+    "displayName": "Demo System Administrator",
+    "role": "SYSTEM_ADMIN",
+    "branch": "HEAD-OFFICE",
+    "status": "ACTIVE",
+    "isDemo": true
+  }
+]

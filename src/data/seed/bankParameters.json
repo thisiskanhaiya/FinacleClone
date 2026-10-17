@@ -1,0 +1,14 @@
+[
+  {
+    "id": "BANK-PARAMS",
+    "bankId": "TRN-BANK-001",
+    "bankName": "Training Bank (Fictional)",
+    "baseCurrency": "INR",
+    "businessDate": "2026-10-17",
+    "businessDateStatus": "OPEN",
+    "holidayCalendar": ["2026-01-26", "2026-08-15", "2026-10-02"],
+    "channelCodes": ["BRANCH"],
+    "highValueThreshold": 200000.0,
+    "fictional": true
+  }
+]

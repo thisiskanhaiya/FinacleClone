@@ -1,0 +1,35 @@
+[
+  {
+    "id": "TXN-SEED-000001",
+    "operationCode": "TEL-CASH-DEPOSIT-001",
+    "type": "CASH_DEPOSIT",
+    "accountNumber": "SB000002",
+    "amount": 2500.0,
+    "currency": "INR",
+    "status": "PENDING_AUTHORISATION",
+    "maker": "teller01",
+    "checker": null,
+    "branch": "BR001",
+    "businessDate": "2026-10-17",
+    "remarks": "Seeded pending teller deposit for training",
+    "createdAt": "2026-10-17T09:15:00.000Z",
+    "fictional": true
+  },
+  {
+    "id": "TXN-SEED-000002",
+    "operationCode": "PAY-INTERNAL-001",
+    "type": "INTERNAL_TRANSFER",
+    "sourceAccount": "SB000001",
+    "destinationAccount": "SB000007",
+    "amount": 4000.0,
+    "currency": "INR",
+    "status": "PENDING_AUTHORISATION",
+    "maker": "teller01",
+    "checker": null,
+    "branch": "BR001",
+    "businessDate": "2026-10-17",
+    "remarks": "Seeded pending transfer for training",
+    "createdAt": "2026-10-17T09:40:00.000Z",
+    "fictional": true
+  }
+]

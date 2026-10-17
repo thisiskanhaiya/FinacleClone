@@ -1,0 +1,12 @@
+[
+  { "id": "TRN-GL-1001", "code": "TRN-GL-1001", "name": "Teller Cash GL (Training)", "category": "ASSET", "balance": 500000.0, "fictional": true },
+  { "id": "TRN-GL-2001", "code": "TRN-GL-2001", "name": "Savings Deposit Liability GL (Training)", "category": "LIABILITY", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-2002", "code": "TRN-GL-2002", "name": "Current Deposit Liability GL (Training)", "category": "LIABILITY", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-2003", "code": "TRN-GL-2003", "name": "Term Deposit Liability GL (Training)", "category": "LIABILITY", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-3001", "code": "TRN-GL-3001", "name": "Loan Principal Asset GL (Training)", "category": "ASSET", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-3002", "code": "TRN-GL-3002", "name": "Interest Receivable GL (Training)", "category": "ASSET", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-4001", "code": "TRN-GL-4001", "name": "Interest Income GL (Training)", "category": "INCOME", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-5001", "code": "TRN-GL-5001", "name": "Interest Expense GL (Training)", "category": "EXPENSE", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-4002", "code": "TRN-GL-4002", "name": "Charges Income GL (Training)", "category": "INCOME", "balance": 0.0, "fictional": true },
+  { "id": "TRN-GL-9001", "code": "TRN-GL-9001", "name": "Suspense GL (Training)", "category": "SUSPENSE", "balance": 0.0, "fictional": true }
+]

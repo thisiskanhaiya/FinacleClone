@@ -1,0 +1,36 @@
+[
+  {
+    "id": "FD000001",
+    "depositNumber": "FD000001",
+    "cif": "CIF000001",
+    "customerName": "Amit Sharma",
+    "productCode": "TD-STD",
+    "principal": 100000.0,
+    "interestRatePercent": 6.5,
+    "termMonths": 12,
+    "openedOn": "2026-01-15",
+    "maturesOn": "2027-01-15",
+    "maturityAmount": 106500.0,
+    "fundingAccount": "SB000001",
+    "status": "ACTIVE",
+    "branch": "BR001",
+    "fictional": true
+  },
+  {
+    "id": "FD000002",
+    "depositNumber": "FD000002",
+    "cif": "CIF000002",
+    "customerName": "Neha Verma",
+    "productCode": "TD-STD",
+    "principal": 50000.0,
+    "interestRatePercent": 6.5,
+    "termMonths": 12,
+    "openedOn": "2025-09-01",
+    "maturesOn": "2026-09-01",
+    "maturityAmount": 53250.0,
+    "fundingAccount": "SB000002",
+    "status": "MATURED",
+    "branch": "BR001",
+    "fictional": true
+  }
+]

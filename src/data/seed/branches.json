@@ -1,0 +1,24 @@
+[
+  {
+    "id": "BR001",
+    "branchCode": "BR001",
+    "name": "Training Branch - Fort Mumbai",
+    "cashLimit": 5000000.0,
+    "tellerCashLimit": 500000.0,
+    "allowedProducts": ["SAV-REG", "SAV-SAL", "CUR-STD", "TD-STD", "LOAN-PL"],
+    "localHolidays": [],
+    "status": "OPEN",
+    "fictional": true
+  },
+  {
+    "id": "HEAD-OFFICE",
+    "branchCode": "HEAD-OFFICE",
+    "name": "Training Head Office",
+    "cashLimit": null,
+    "tellerCashLimit": null,
+    "allowedProducts": ["SAV-REG", "SAV-SAL", "CUR-STD", "TD-STD", "LOAN-PL"],
+    "localHolidays": [],
+    "status": "OPEN",
+    "fictional": true
+  }
+]
