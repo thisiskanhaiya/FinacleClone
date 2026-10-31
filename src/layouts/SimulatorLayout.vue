@@ -31,6 +31,14 @@
         </span>
         <span class="header-badge" title="Notifications">🔔 0</span>
         <button class="header-button" @click="logout">Logout</button>
+        <button
+          class="header-button"
+          style="background:#d9485f; color:#fff; border:none;"
+          title="Clear saved browser data and start fresh"
+          @click="resetAppData"
+        >
+          Reset data
+        </button>
       </div>
     </header>
 
@@ -141,6 +149,32 @@ function isModuleActive(module) {
 async function logout() {
   await auth.logout();
   router.push({ name: 'login' });
+}
+
+async function resetAppData() {
+  const confirmed = window.confirm(
+    'This will clear all saved training data in this browser and restart the app from a fresh state. Continue?',
+  );
+  if (!confirmed) return;
+
+  try {
+    await auth.logout('RESET_LOCAL_DATA');
+  } finally {
+    try {
+      window.localStorage.clear();
+    } catch (error) {
+      console.warn('Unable to clear localStorage:', error);
+    }
+
+    try {
+      window.sessionStorage.clear();
+    } catch (error) {
+      console.warn('Unable to clear sessionStorage:', error);
+    }
+
+    router.push({ name: 'login' });
+    window.location.reload();
+  }
 }
 
 onMounted(async () => {
